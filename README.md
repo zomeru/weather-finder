@@ -62,7 +62,9 @@ Before you begin, ensure you have met the following requirements:
 
 2. **Start the Expo Development Server**:
    In your project directory, run:
-   `   npm run start`
+   ```
+   npm run start
+   ```
 3. **Scan the QR Code**:
    Open the Expo Go app on your device and scan the QR code displayed in your terminal.
 
