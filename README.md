@@ -30,8 +30,9 @@ Before you begin, ensure you have met the following requirements:
    ```
 2. **Install Dependencies**:
    Run the following command to install all necessary dependencies:
-   `    npm install
-   `
+   ```
+   npm install
+   ```
 
 ## Running the App
 
@@ -61,8 +62,7 @@ Before you begin, ensure you have met the following requirements:
 
 2. **Start the Expo Development Server**:
    In your project directory, run:
-   `    npm run start
-   `
+   `   npm run start`
 3. **Scan the QR Code**:
    Open the Expo Go app on your device and scan the QR code displayed in your terminal.
 
