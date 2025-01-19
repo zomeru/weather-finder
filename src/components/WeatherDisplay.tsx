@@ -7,9 +7,9 @@ import tw from '../lib/tailwind';
 export interface WeatherDisplayProps {
   weather: WeatherData;
   forecast: ForecastData;
-  isFavorite: boolean;
-  onToggleFavorite: () => void;
   tempUnit: TemperatureUnit;
+  isFavorite?: boolean;
+  onToggleFavorite?: () => void;
 }
 
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
@@ -48,21 +48,27 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
   };
 
   return (
-    <View style={tw``}>
-      {/* Current Weather */}
-      <View style={tw`flex-row justify-between items-center mb-6 px-5`}>
+    <View>
+      <View
+        style={tw.style('flex-row items-center mb-6 px-5', {
+          justifyContent: onToggleFavorite ? 'space-between' : 'center',
+          marginTop: onToggleFavorite ? 0 : 16
+        })}
+      >
         <Text
           style={tw`text-xl font-bold text-gray-800 dark:text-white`}
           testID='location'
         >
           {weather.name}, {weather.sys.country}
         </Text>
-        <Icon
-          name={isFavorite ? 'favorite' : 'favorite-border'}
-          onPress={onToggleFavorite}
-          color={isFavorite ? '#f43f5e' : '#9ca3af'}
-          size={24}
-        />
+        {onToggleFavorite && (
+          <Icon
+            name={isFavorite ? 'favorite' : 'favorite-border'}
+            onPress={onToggleFavorite}
+            color={isFavorite ? '#f43f5e' : '#9ca3af'}
+            size={24}
+          />
+        )}
       </View>
 
       <Animated.View

@@ -90,6 +90,7 @@ export interface WeatherContextType {
 export type RootStackParamList = {
   Home: undefined;
   Favorites: undefined;
+  FavoriteCity: { city: string };
 };
 
 export type ScreenNavigationProp = NativeStackNavigationProp<

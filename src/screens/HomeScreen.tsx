@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { View, ScrollView, Animated, TouchableOpacity } from 'react-native';
 import { SearchBar, Icon, Text, Switch } from '@rneui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useQueries } from '@tanstack/react-query';
 import { useNavigation } from '@react-navigation/native';
 import { useAppColorScheme } from 'twrnc';
 import { useWeather } from '../context/WeatherContext';
 import { WeatherData, ForecastData, ScreenNavigationProp } from '../types';
-import { fetchForecast, fetchWeather } from '../services';
 import tw from '../lib/tailwind';
 import { WeatherDisplay } from '../components';
 
@@ -16,36 +14,20 @@ import {
   saveTempUnit,
   updateFavorites
 } from '../lib/storage';
+import useWeatherData from '../hooks/useWeatherData';
 
 const HomeScreen = () => {
   const [search, setSearch] = useState<string>('');
   const [city, setCity] = useState<string>('');
-  const { state, dispatch } = useWeather();
+  const [isVisible, setIsVisible] = useState(false);
   const fadeAnim = new Animated.Value(0);
   const [heartScale] = useState(new Animated.Value(1));
 
-  const [isVisible, setIsVisible] = useState(false);
-
+  const { state, dispatch } = useWeather();
   const navigation = useNavigation<ScreenNavigationProp>();
   const [colorScheme, toggleColorScheme, _setColorScheme] =
     useAppColorScheme(tw);
-
-  const [weatherQuery, forecastQuery] = useQueries({
-    queries: [
-      {
-        queryKey: ['weather', city],
-        queryFn: () => fetchWeather(city),
-        enabled: !!city,
-        staleTime: 300000
-      },
-      {
-        queryKey: ['forecast', city],
-        queryFn: () => fetchForecast(city),
-        enabled: !!city,
-        staleTime: 300000
-      }
-    ]
-  });
+  const { weatherQuery, forecastQuery } = useWeatherData(city);
 
   const animateHeart = () => {
     Animated.sequence([

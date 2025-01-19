@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon } from '@rneui/themed';
-import { FavoritesScreen, HomeScreen } from '../screens';
+import { FavoriteCityScreen, FavoritesScreen, HomeScreen } from '../screens';
 import tw from '../lib/tailwind';
 import { useWeather } from '../context';
 
@@ -50,6 +50,7 @@ const AppNavigator = () => {
         >
           <Stack.Screen name='Home' component={HomeScreen} />
           <Stack.Screen name='Favorites' component={FavoritesScreen} />
+          <Stack.Screen name='FavoriteCity' component={FavoriteCityScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
