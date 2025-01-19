@@ -53,7 +53,7 @@ Before you begin, ensure you have met the following requirements:
    - Press **Shift + I** to select an iOS Simulator (requires macOS)
    - Press **A** to open the project on a connected Android device.
    - Press **Shift + A** to select an Android device or emulator to open.
-   - Press **W** to open the project in a web browser (if configured).
+   - Press **S** to switch between Expo Go or development build.
 
 ### On a Physical Device
 
